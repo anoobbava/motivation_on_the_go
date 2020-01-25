@@ -54,7 +54,7 @@ class _QuoteDataState extends State<QuoteData> {
                   height: 20.0,
                 ),
                 Text(
-                  snapshot.data.quoteAuthor,
+                  '-${snapshot.data.quoteAuthor}-',
                   style: TextStyle(
                       fontSize: 23.0,
                       color: Colors.white,
