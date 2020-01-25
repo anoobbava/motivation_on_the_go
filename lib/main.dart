@@ -39,20 +39,45 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: FutureBuilder<Quote>(
+      body: Stack(children: <Widget>[
+        Center(
+          child: Image.asset(
+            'images/background.jpg',
+            width: size.width,
+            height: size.height,
+            fit: BoxFit.fill,
+          ),
+        ),
+        FutureBuilder<Quote>(
           future: quote,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return SafeArea(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(top: 50.0),
+                    Container(
+                      margin: EdgeInsets.only(left: 50.0),
+                      child: Text(
+                        snapshot.data.quoteText,
+                        style: TextStyle(
+                            fontSize: 30.0,
+                            color: Colors.white,
+                            fontFamily: 'quoteScript'),
+                      ),
                     ),
-                    Text(snapshot.data.quoteText),
-                    Text(snapshot.data.quoteAuthor),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Text(
+                      snapshot.data.quoteAuthor,
+                      style: TextStyle(
+                          fontSize: 23.0,
+                          color: Colors.white,
+                          fontFamily: 'quoteScript'),
+                    ),
                   ],
                 ),
               );
@@ -60,10 +85,10 @@ class _HomePageState extends State<HomePage> {
               return Text("${snapshot.error}");
             }
             // By default, show a loading spinner.
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           },
         ),
-      ),
+      ]),
     );
   }
 }

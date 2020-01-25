@@ -16,3 +16,9 @@ dev_dependencies:
     sdk: flutter
 flutter:
   uses-material-design: true
+  assets: 
+    - images/
+  fonts:
+    - family: quoteScript
+      fonts:
+        - asset: fonts/Courgette-Regular.ttf
