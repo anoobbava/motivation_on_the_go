@@ -60,6 +60,23 @@ class _QuoteDataState extends State<QuoteData> {
                       color: Colors.white,
                       fontFamily: 'quoteScript'),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.share),
+                      onPressed: () {
+                        print('you shared');
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.favorite_border),
+                      onPressed: () {
+                        print('you liked');
+                      },
+                    ),
+                  ],
+                )
               ],
             ),
           );
