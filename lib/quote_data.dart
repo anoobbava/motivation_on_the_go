@@ -64,15 +64,30 @@ class _QuoteDataState extends State<QuoteData> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.share),
+                      icon: Icon(
+                        Icons.share,
+                        color: Colors.white,
+                      ),
                       onPressed: () {
                         print('you shared');
                       },
                     ),
                     IconButton(
-                      icon: Icon(Icons.favorite_border),
+                      icon: Icon(
+                        Icons.favorite_border,
+                        color: Colors.white,
+                      ),
                       onPressed: () {
                         print('you liked');
+                        final snackBar = SnackBar(
+                          backgroundColor: Colors.black,
+                          content: Text(
+                            'Added to favorites',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0),
+                          ),
+                        );
+                        Scaffold.of(context).showSnackBar(snackBar);
                       },
                     ),
                   ],
