@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
 
 import './Quote.dart';
+import './database_helper.dart';
 
 class QuoteData extends StatefulWidget {
   @override
@@ -14,7 +15,6 @@ class QuoteData extends StatefulWidget {
 // call the API and fetch the response
 Future<Quote> fetchQuote() async {
   final response = await http.get('https://favqs.com/api/qotd');
-
   if (response.statusCode == 200) {
     return Quote.fromJson(json.decode(response.body));
   } else {
@@ -24,11 +24,13 @@ Future<Quote> fetchQuote() async {
 
 class _QuoteDataState extends State<QuoteData> {
   Future<Quote> quote;
-
+  var dbHelper;
+  Future<List<Quote>> wholeQuotes;
   @override
   void initState() {
     super.initState();
     quote = fetchQuote();
+    dbHelper = DataBaseHelper();
   }
 
   @override
@@ -82,6 +84,11 @@ class _QuoteDataState extends State<QuoteData> {
                       ),
                       onPressed: () {
                         print('you liked');
+                        Quote q = Quote(
+                            quoteId: null,
+                            quoteText: snapshot.data.quoteText,
+                            quoteAuthor: snapshot.data.quoteAuthor);
+                        dbHelper.saveQuote(q);
                         final snackBar = SnackBar(
                           backgroundColor: Colors.black,
                           content: Text(
@@ -91,6 +98,14 @@ class _QuoteDataState extends State<QuoteData> {
                           ),
                         );
                         Scaffold.of(context).showSnackBar(snackBar);
+                      },
+                    ),
+                    RaisedButton(
+                      child: Text('clicked'),
+                      onPressed: () {
+                        setState(() {
+                          wholeQuotes = dbHelper.fetchSavedQuotes();
+                        });
                       },
                     ),
                   ],
