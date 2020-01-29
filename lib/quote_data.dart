@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:share/share.dart';
 
 import './Quote.dart';
 
@@ -70,6 +71,8 @@ class _QuoteDataState extends State<QuoteData> {
                       ),
                       onPressed: () {
                         print('you shared');
+                        Share.share(
+                            '${snapshot.data.quoteText}--${snapshot.data.quoteAuthor}');
                       },
                     ),
                     IconButton(
