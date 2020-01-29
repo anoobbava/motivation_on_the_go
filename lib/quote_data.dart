@@ -100,14 +100,6 @@ class _QuoteDataState extends State<QuoteData> {
                         Scaffold.of(context).showSnackBar(snackBar);
                       },
                     ),
-                    RaisedButton(
-                      child: Text('clicked'),
-                      onPressed: () {
-                        setState(() {
-                          wholeQuotes = dbHelper.fetchSavedQuotes();
-                        });
-                      },
-                    ),
                   ],
                 )
               ],
