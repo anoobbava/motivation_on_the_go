@@ -5,7 +5,10 @@ import './quote_data.dart';
 void main() => runApp(
       MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: DefaultTabController(
+          length: 2,
+          child: HomePage(),
+        ),
       ),
     );
 
@@ -14,17 +17,47 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Stack(children: <Widget>[
-        Center(
-          child: Image.asset(
-            'images/background.jpg',
-            width: size.width,
-            height: size.height,
-            fit: BoxFit.fill,
-          ),
+      appBar: AppBar(
+        titleSpacing: size.width / 5,
+        backgroundColor: Colors.black,
+        title: Text(
+          'Daily motivation',
+          style: TextStyle(fontFamily: 'quoteScript', fontSize: 22.0),
         ),
-        QuoteData(),
-      ]),
+        bottom: TabBar(
+          tabs: <Widget>[
+            Tooltip(
+              message: 'Daily Quotes',
+              child: Tab(
+                icon: Icon(
+                  Icons.today,
+                ),
+              ),
+            ),
+            Tab(
+              icon: Icon(Icons.favorite),
+            ),
+          ],
+        ),
+      ),
+      body: TabBarView(
+        children: <Widget>[
+          Stack(children: <Widget>[
+            Center(
+              child: Image.asset(
+                'images/background.jpg',
+                width: size.width,
+                height: size.height,
+                fit: BoxFit.fill,
+              ),
+            ),
+            QuoteData(),
+          ]),
+          Center(
+            child: Text('favorite Quotes'),
+          ),
+        ],
+      ),
     );
   }
 }
