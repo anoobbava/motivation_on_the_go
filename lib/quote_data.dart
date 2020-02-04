@@ -22,7 +22,11 @@ Future<Quote> fetchQuote() async {
   }
 }
 
-class _QuoteDataState extends State<QuoteData> {
+class _QuoteDataState extends State<QuoteData>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   Future<Quote> quote;
   var dbHelper;
   Future<List<Quote>> wholeQuotes;
@@ -35,6 +39,7 @@ class _QuoteDataState extends State<QuoteData> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return FutureBuilder<Quote>(
       future: quote,
       builder: (context, snapshot) {
