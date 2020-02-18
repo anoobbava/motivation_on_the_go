@@ -59,4 +59,9 @@ class DataBaseHelper {
     }
     return quotes;
   }
+
+  Future<int> deleteQuoteFromFavorite(int id) async {
+    var dbClient = await fetchMyDatabase;
+    return await dbClient.delete(TABLE, where: '$ID = ?', whereArgs: [id]);
+  }
 }

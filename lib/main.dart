@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './quote_data.dart';
+import './favorite_quotes.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -53,9 +54,7 @@ class HomePage extends StatelessWidget {
             ),
             QuoteData(),
           ]),
-          Center(
-            child: Text('favorite Quotes'),
-          ),
+          FavoriteQuotes(),
         ],
       ),
     );

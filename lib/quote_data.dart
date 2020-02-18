@@ -77,7 +77,6 @@ class _QuoteDataState extends State<QuoteData>
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        print('you shared');
                         Share.share(
                             '${snapshot.data.quoteText}--${snapshot.data.quoteAuthor}');
                       },
@@ -88,7 +87,6 @@ class _QuoteDataState extends State<QuoteData>
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        print('you liked');
                         Quote q = Quote(
                             quoteId: null,
                             quoteText: snapshot.data.quoteText,
